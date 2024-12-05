@@ -1,0 +1,35 @@
+[package]
+name = "rustic-builder"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = "4.5"
+builder-server = {git = "https://github.com/pawanjay176/ethereum_apis", rev = "6141ac634c001de478f4e11df9095f670f97a36e"}
+ethereum-apis-common= {git = "https://github.com/pawanjay176/ethereum_apis", rev = "6141ac634c001de478f4e11df9095f670f97a36e"}
+async-trait = "0.1.51"
+ethereum_ssz = "0.7"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1", features = ["raw_value"] }
+parking_lot = "0.12.0"
+tokio = { version = "1", default-features = false, features = ["signal", "rt-multi-thread"] }
+serde_derive = "1"
+types = { git = "https://github.com/pawanjay176/lighthouse.git", rev = "6d10456912b3c39b8a8c9089db76e8ead20608a0" }
+tracing = { version = "0.1", features = ["attributes"] }
+tracing-subscriber = {version = "0.3.8", features = ["env-filter"]}
+tracing-error = "0.2.0"
+tracing-core = "0.1.21"
+hex = "0.4.3"
+async-channel = "1.9.0"
+futures-channel = "0.3.21"
+axum = { version = "0.7", features = ["ws"] }
+slog = "2.7.0"
+sloggers = "2.1.1"
+tracing-slog = "0.3.0"
+color-eyre = {version = "0.6", features = ["color-spantrace"]}
+eth2 = { git = "https://github.com/pawanjay176/lighthouse.git", rev = "6d10456912b3c39b8a8c9089db76e8ead20608a0" }
+execution_layer = { git = "https://github.com/pawanjay176/lighthouse", rev = "6d10456912b3c39b8a8c9089db76e8ead20608a0" }
+task_executor = { git = "https://github.com/pawanjay176/lighthouse", rev = "6d10456912b3c39b8a8c9089db76e8ead20608a0" }
+sensitive_url = { git = "https://github.com/pawanjay176/lighthouse", rev = "6d10456912b3c39b8a8c9089db76e8ead20608a0" }
+eth2_network_config = { git = "https://github.com/pawanjay176/lighthouse", rev = "6d10456912b3c39b8a8c9089db76e8ead20608a0" }
+
