@@ -53,8 +53,8 @@ struct BuilderConfig {
 #[instrument]
 #[tokio::main]
 async fn main() -> color_eyre::eyre::Result<()> {
-    let relay_config: BuilderConfig = BuilderConfig::parse();
-    let log_level: LevelFilter = relay_config.log_level.into();
+    let builder_config: BuilderConfig = BuilderConfig::parse();
+    let log_level: LevelFilter = builder_config.log_level.into();
 
     // Initialize logging.
     color_eyre::install()?;
@@ -65,11 +65,10 @@ async fn main() -> color_eyre::eyre::Result<()> {
 
     tracing::info!("Starting mock relay");
 
-    let beacon_url = SensitiveUrl::parse(relay_config.beacon_node.as_str())
+    let beacon_url = SensitiveUrl::parse(builder_config.beacon_node.as_str())
         .map_err(|e| eyre!(format!("{e:?}")))?;
     let beacon_client =
         eth2::BeaconNodeHttpClient::new(beacon_url, Timeouts::set_all(Duration::from_secs(12)));
-
     let config = beacon_client
         .get_config_spec::<types::ConfigAndPreset>()
         .await
@@ -77,7 +76,7 @@ async fn main() -> color_eyre::eyre::Result<()> {
     let spec = ChainSpec::from_config::<MainnetEthSpec>(config.data.config())
         .ok_or(eyre!("unable to parse chain spec from config"))?;
 
-    let url = SensitiveUrl::parse(relay_config.execution_endpoint.as_str())
+    let url = SensitiveUrl::parse(builder_config.execution_endpoint.as_str())
         .map_err(|e| eyre!(format!("{e:?}")))?;
 
     // Convert slog logs from the EL to tracing logs.
@@ -95,7 +94,8 @@ async fn main() -> color_eyre::eyre::Result<()> {
 
     let config = Config {
         execution_endpoint: Some(url),
-        secret_file: Some(relay_config.jwt_secret),
+        secret_file: Some(builder_config.jwt_secret),
+        suggested_fee_recipient: builder_config.default_fee_recipient,
         ..Default::default()
     };
 
@@ -115,7 +115,13 @@ async fn main() -> color_eyre::eyre::Result<()> {
     let pubkey = rustic_builder.deref().public_key();
     tracing::info!("Builder pubkey: {pubkey:?}");
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    let listener = tokio::net::TcpListener::bind(format!(
+        "{}:{}",
+        builder_config.address, builder_config.port
+    ))
+    .await
+    .unwrap();
+    tracing::info!("Listening on {listener:?}");
     let app = builder_server::server::new(rustic_builder);
     axum::serve(listener, app).await?;
 
