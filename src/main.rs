@@ -1,5 +1,4 @@
 use clap::Parser;
-use color_eyre::eyre::eyre;
 use eth2::Timeouts;
 use execution_layer::Config;
 use rustic_builder::builder_impl::RusticBuilder;
@@ -13,6 +12,7 @@ use tracing::{instrument, Level};
 use tracing_core::LevelFilter;
 use tracing_error::ErrorLayer;
 use tracing_subscriber::prelude::*;
+use tracing_subscriber::EnvFilter;
 use types::{Address, ChainSpec, MainnetEthSpec};
 
 #[derive(Parser)]
@@ -52,34 +52,48 @@ struct BuilderConfig {
 
 #[instrument]
 #[tokio::main]
-async fn main() -> color_eyre::eyre::Result<()> {
+async fn main() -> Result<(), String> {
     let builder_config: BuilderConfig = BuilderConfig::parse();
     let log_level: LevelFilter = builder_config.log_level.into();
 
-    // Initialize logging.
-    color_eyre::install()?;
+    // Initialize logging
+    let filter = EnvFilter::builder()
+        .with_default_directive(LevelFilter::OFF.into())
+        .parse(format!(
+            "rustic_builder={},execution_layer={}",
+            log_level, log_level
+        ))
+        .unwrap();
+
+    // Set up the tracing subscriber with the filter
     tracing_subscriber::Registry::default()
-        .with(tracing_subscriber::fmt::layer().with_filter(log_level))
+        .with(
+            tracing_subscriber::fmt::layer()
+                .with_ansi(false)
+                .with_filter(filter),
+        )
         .with(ErrorLayer::default())
         .init();
 
     tracing::info!("Starting mock relay");
 
     let beacon_url = SensitiveUrl::parse(builder_config.beacon_node.as_str())
-        .map_err(|e| eyre!(format!("{e:?}")))?;
+        .map_err(|e| format!("Failed to parse beacon URL: {:?}", e))?;
     let beacon_client =
         eth2::BeaconNodeHttpClient::new(beacon_url, Timeouts::set_all(Duration::from_secs(12)));
     let config = beacon_client
         .get_config_spec::<types::ConfigAndPreset>()
         .await
-        .map_err(|e| eyre!(format!("{e:?}")))?;
+        .map_err(|e| format!("Failed to get config spec: {:?}", e))?;
     let spec = ChainSpec::from_config::<MainnetEthSpec>(config.data.config())
-        .ok_or(eyre!("unable to parse chain spec from config"))?;
+        .ok_or_else(|| String::from("Unable to parse chain spec from config"))?;
 
     let url = SensitiveUrl::parse(builder_config.execution_endpoint.as_str())
-        .map_err(|e| eyre!(format!("{e:?}")))?;
+        .map_err(|e| format!("Failed to parse execution endpoint URL: {:?}", e))?;
 
     // Convert slog logs from the EL to tracing logs.
+    // TODO(pawan): get rid of this abomination once we switch
+    // to tracing in lighthouse
     let drain = tracing_slog::TracingSlogDrain;
     let log_root = slog::Logger::root(drain, slog::o!());
 
@@ -101,15 +115,21 @@ async fn main() -> color_eyre::eyre::Result<()> {
 
     let el = execution_layer::ExecutionLayer::<MainnetEthSpec>::from_config(
         config,
-        task_executor,
-        log_root,
+        task_executor.clone(),
+        log_root.clone(),
     )
-    .map_err(|e| eyre!(format!("{e:?}")))?;
+    .map_err(|e| format!("Failed to create execution layer: {:?}", e))?;
 
     let spec = Arc::new(spec);
-    let mock_builder =
-        execution_layer::test_utils::MockBuilder::new(el, beacon_client, spec.clone());
-    let rustic_builder = RusticBuilder::new(mock_builder, spec);
+    let mock_builder = execution_layer::test_utils::MockBuilder::new(
+        el,
+        beacon_client.clone(),
+        false,
+        false,
+        spec.clone(),
+        log_root,
+    );
+    let rustic_builder = Arc::new(RusticBuilder::new(mock_builder, spec));
     tracing::info!("Initialized mock builder");
 
     let pubkey = rustic_builder.deref().public_key();
@@ -121,10 +141,29 @@ async fn main() -> color_eyre::eyre::Result<()> {
     ))
     .await
     .unwrap();
-    tracing::info!("Listening on {listener:?}");
-    let app = builder_server::server::new(rustic_builder);
-    axum::serve(listener, app).await?;
 
+    let builder_preparer = rustic_builder.clone();
+    task_executor.spawn(
+        {
+            async move {
+                tracing::info!("Starting preparation service");
+                let _result = builder_preparer.prepare_execution_layer().await;
+                tracing::error!("Preparation service stopped");
+            }
+        },
+        "preparation service",
+    );
+    tracing::info!("Listening on {:?}", listener.local_addr());
+    let app = builder_server::server::new(rustic_builder);
+    task_executor.spawn(
+        async {
+            tracing::info!("Starting builder server");
+            axum::serve(listener, app).await.expect("server failed");
+        },
+        "rustic_server",
+    );
+
+    task_executor.exit().await;
     tracing::info!("Shutdown complete.");
 
     Ok(())
