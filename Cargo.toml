@@ -11,7 +11,6 @@ async-trait = "0.1.51"
 ethereum_ssz = "0.7"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1", features = ["raw_value"] }
-parking_lot = "0.12.0"
 tokio = { version = "1", default-features = false, features = ["signal", "rt-multi-thread"] }
 serde_derive = "1"
 tracing = { version = "0.1", features = ["attributes"] }
@@ -25,7 +24,6 @@ axum = { version = "0.7", features = ["ws"] }
 slog = "2.7.0"
 sloggers = "2.1.1"
 tracing-slog = "0.3.0"
-color-eyre = {version = "0.6", features = ["color-spantrace"]}
 types = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
 eth2 = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
 execution_layer = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }

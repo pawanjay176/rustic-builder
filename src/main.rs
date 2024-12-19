@@ -1,9 +1,7 @@
 use clap::Parser;
-use color_eyre::eyre::eyre;
 use eth2::Timeouts;
 use execution_layer::Config;
 use rustic_builder::builder_impl::RusticBuilder;
-use rustic_builder::payload_creator::get_header;
 use sensitive_url::SensitiveUrl;
 use std::ops::Deref;
 use std::path::PathBuf;
@@ -50,23 +48,18 @@ struct BuilderConfig {
         requires("empty-payloads")
     )]
     default_fee_recipient: Option<Address>,
-    #[clap(long, help = "Client mode")]
-    client_mode: bool,
 }
 
 #[instrument]
 #[tokio::main]
-async fn main() -> color_eyre::eyre::Result<()> {
+async fn main() -> Result<(), String> {
     let builder_config: BuilderConfig = BuilderConfig::parse();
     let log_level: LevelFilter = builder_config.log_level.into();
 
-    // Initialize logging.
-    // color_eyre::install()?;
-    // Create a filter that allows logs from the binary and the execution_layer
-    // Create filter with your existing log level
+    // Initialize logging
     let filter = EnvFilter::builder()
         .with_default_directive(LevelFilter::OFF.into())
-        .parse(&format!(
+        .parse(format!(
             "rustic_builder={},execution_layer={}",
             log_level, log_level
         ))
@@ -85,20 +78,22 @@ async fn main() -> color_eyre::eyre::Result<()> {
     tracing::info!("Starting mock relay");
 
     let beacon_url = SensitiveUrl::parse(builder_config.beacon_node.as_str())
-        .map_err(|e| eyre!(format!("{e:?}")))?;
+        .map_err(|e| format!("Failed to parse beacon URL: {:?}", e))?;
     let beacon_client =
         eth2::BeaconNodeHttpClient::new(beacon_url, Timeouts::set_all(Duration::from_secs(12)));
     let config = beacon_client
         .get_config_spec::<types::ConfigAndPreset>()
         .await
-        .map_err(|e| eyre!(format!("{e:?}")))?;
+        .map_err(|e| format!("Failed to get config spec: {:?}", e))?;
     let spec = ChainSpec::from_config::<MainnetEthSpec>(config.data.config())
-        .ok_or(eyre!("unable to parse chain spec from config"))?;
+        .ok_or_else(|| String::from("Unable to parse chain spec from config"))?;
 
     let url = SensitiveUrl::parse(builder_config.execution_endpoint.as_str())
-        .map_err(|e| eyre!(format!("{e:?}")))?;
+        .map_err(|e| format!("Failed to parse execution endpoint URL: {:?}", e))?;
 
     // Convert slog logs from the EL to tracing logs.
+    // TODO(pawan): get rid of this abomination once we switch
+    // to tracing in lighthouse
     let drain = tracing_slog::TracingSlogDrain;
     let log_root = slog::Logger::root(drain, slog::o!());
 
@@ -123,7 +118,7 @@ async fn main() -> color_eyre::eyre::Result<()> {
         task_executor.clone(),
         log_root.clone(),
     )
-    .map_err(|e| eyre!(format!("{e:?}")))?;
+    .map_err(|e| format!("Failed to create execution layer: {:?}", e))?;
 
     let spec = Arc::new(spec);
     let mock_builder = execution_layer::test_utils::MockBuilder::new(
@@ -152,32 +147,21 @@ async fn main() -> color_eyre::eyre::Result<()> {
         {
             async move {
                 tracing::info!("Starting preparation service");
-                let result = builder_preparer.prepare_execution_layer().await;
-                dbg!(&result);
+                let _result = builder_preparer.prepare_execution_layer().await;
+                tracing::error!("Preparation service stopped");
             }
         },
         "preparation service",
     );
-    tracing::info!("Listening on {listener:?}");
+    tracing::info!("Listening on {:?}", listener.local_addr());
     let app = builder_server::server::new(rustic_builder);
     task_executor.spawn(
         async {
             tracing::info!("Starting builder server");
-            axum::serve(listener, app).await.expect("server failed"); // or handle the error however you prefer
+            axum::serve(listener, app).await.expect("server failed");
         },
         "rustic_server",
     );
-
-    if builder_config.client_mode {
-        task_executor.spawn(
-            async move {
-                get_header::<MainnetEthSpec>(beacon_client.clone())
-                    .await
-                    .unwrap();
-            },
-            "get_header_task",
-        );
-    }
 
     task_executor.exit().await;
     tracing::info!("Shutdown complete.");
