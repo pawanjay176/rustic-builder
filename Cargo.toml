@@ -8,21 +8,15 @@ clap = "4.5"
 builder-server = {git = "https://github.com/pawanjay176/ethereum_apis", rev = "44505a3310206210bab978f291363b942734e01b"}
 ethereum-apis-common= {git = "https://github.com/pawanjay176/ethereum_apis", rev = "44505a3310206210bab978f291363b942734e01b"}
 async-trait = "0.1.51"
-ethereum_ssz = "0.7"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = { version = "1", features = ["raw_value"] }
 tokio = { version = "1", default-features = false, features = ["signal", "rt-multi-thread"] }
-serde_derive = "1"
 tracing = { version = "0.1", features = ["attributes"] }
 tracing-subscriber = {version = "0.3.8", features = ["env-filter"]}
 tracing-error = "0.2.0"
 tracing-core = "0.1.21"
-hex = "0.4.3"
 async-channel = "1.9.0"
 futures-channel = "0.3.21"
-axum = { version = "0.7", features = ["ws"] }
+axum = { version = "0.7" }
 slog = "2.7.0"
-sloggers = "2.1.1"
 tracing-slog = "0.3.0"
 types = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
 eth2 = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
@@ -30,7 +24,6 @@ execution_layer = { git = "https://github.com/pawanjay176/lighthouse", branch = 
 task_executor = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
 sensitive_url = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
 eth2_network_config = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
-futures = "0.3"
 
 [patch."https://github.com/sigp/lighthouse"]
 types = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
