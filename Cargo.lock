@@ -3,26 +3,6 @@
 version = 3
 
 [[package]]
-name = "account_utils"
-version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
-dependencies = [
- "directory",
- "eth2_keystore",
- "eth2_wallet",
- "filesystem",
- "rand",
- "regex",
- "rpassword",
- "serde",
- "serde_yaml",
- "slog",
- "types",
- "validator_dir",
- "zeroize",
-]
-
-[[package]]
 name = "addr2line"
 version = "0.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -175,9 +155,9 @@ dependencies = [
 
 [[package]]
 name = "alloy-primitives"
-version = "0.8.14"
+version = "0.8.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9db948902dfbae96a73c2fbf1f7abec62af034ab883e4c777c3fd29702bd6e2c"
+checksum = "6259a506ab13e1d658796c31e6e39d2e2ee89243bcc505ddc613b35732e0a430"
 dependencies = [
  "alloy-rlp",
  "arbitrary",
@@ -201,15 +181,15 @@ dependencies = [
  "ruint",
  "rustc-hash 2.1.0",
  "serde",
- "sha3 0.10.8",
+ "sha3",
  "tiny-keccak",
 ]
 
 [[package]]
 name = "alloy-rlp"
-version = "0.3.9"
+version = "0.3.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "da0822426598f95e45dd1ea32a738dac057529a709ee645fcc516ffa4cbde08f"
+checksum = "f542548a609dca89fcd72b3b9f355928cf844d4363c5eed9c5273a3dd225e097"
 dependencies = [
  "alloy-rlp-derive",
  "arrayvec",
@@ -218,9 +198,9 @@ dependencies = [
 
 [[package]]
 name = "alloy-rlp-derive"
-version = "0.3.9"
+version = "0.3.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2b09cae092c27b6f1bde952653a22708691802e57bfef4a2973b80bea21efd3f"
+checksum = "5a833d97bf8a5f0f878daf2c8451fff7de7f9de38baa5a45d936ec718d81255a"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -526,7 +506,7 @@ dependencies = [
  "futures-lite",
  "parking",
  "polling",
- "rustix 0.38.41",
+ "rustix 0.38.42",
  "slab",
  "tracing",
  "windows-sys 0.59.0",
@@ -713,7 +693,7 @@ checksum = "8c3c1a368f70d6cf7302d78f8f7093da241fb8e8807c05cc9e51a125895a6d5b"
 [[package]]
 name = "beacon-api-types"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/ethereum_apis?rev=6141ac634c001de478f4e11df9095f670f97a36e#6141ac634c001de478f4e11df9095f670f97a36e"
+source = "git+https://github.com/pawanjay176/ethereum_apis?rev=44505a3310206210bab978f291363b942734e01b#44505a3310206210bab978f291363b942734e01b"
 dependencies = [
  "eth2",
 ]
@@ -770,26 +750,14 @@ checksum = "b048fb63fd8b5923fc5aa7b340d8e156aec7ec02f0c78fa8a6ddc2613f6f71de"
 
 [[package]]
 name = "bitvec"
-version = "0.20.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7774144344a4faa177370406a7ff5f1da24303817368584c6206c8303eb07848"
-dependencies = [
- "funty 1.1.0",
- "radium 0.6.2",
- "tap",
- "wyz 0.2.0",
-]
-
-[[package]]
-name = "bitvec"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1bc2832c24239b0141d5674bb9174f9d68a8b5b3f2753311927c172ca46f7e9c"
 dependencies = [
- "funty 2.0.0",
- "radium 0.7.0",
+ "funty",
+ "radium",
  "tap",
- "wyz 0.5.1",
+ "wyz",
 ]
 
 [[package]]
@@ -807,7 +775,6 @@ version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4152116fd6e9dadb291ae18fc1ec3575ed6d84c29642d97890f4b4a3417297e4"
 dependencies = [
- "block-padding",
  "generic-array",
 ]
 
@@ -821,15 +788,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "block-padding"
-version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8d696c370c750c948ada61c69a0ee2cbbb9c50b1019ddb86d9317157a99c2cae"
-
-[[package]]
 name = "bls"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "alloy-primitives",
  "arbitrary",
@@ -886,7 +847,7 @@ dependencies = [
 [[package]]
 name = "builder-api-types"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/ethereum_apis?rev=6141ac634c001de478f4e11df9095f670f97a36e#6141ac634c001de478f4e11df9095f670f97a36e"
+source = "git+https://github.com/pawanjay176/ethereum_apis?rev=44505a3310206210bab978f291363b942734e01b#44505a3310206210bab978f291363b942734e01b"
 dependencies = [
  "beacon-api-types",
 ]
@@ -894,7 +855,7 @@ dependencies = [
 [[package]]
 name = "builder-server"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/ethereum_apis?rev=6141ac634c001de478f4e11df9095f670f97a36e#6141ac634c001de478f4e11df9095f670f97a36e"
+source = "git+https://github.com/pawanjay176/ethereum_apis?rev=44505a3310206210bab978f291363b942734e01b#44505a3310206210bab978f291363b942734e01b"
 dependencies = [
  "async-trait",
  "axum",
@@ -914,7 +875,7 @@ dependencies = [
 [[package]]
 name = "builder_client"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "eth2",
  "lighthouse_version",
@@ -988,9 +949,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-version = "1.2.2"
+version = "1.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f34d93e62b03caf570cccc334cbc6c2fceca82f39211051345108adcba3eebdc"
+checksum = "27f657647bcff5394bf56c7317665bbf790a137a50eaaa5c6bfbb9e27a518f2d"
 dependencies = [
  "jobserver",
  "libc",
@@ -1044,9 +1005,9 @@ dependencies = [
 
 [[package]]
 name = "chrono"
-version = "0.4.38"
+version = "0.4.39"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a21f936df1771bf62b77f047b726c4625ff2e8aa607c01ec06e5a05bd8463401"
+checksum = "7e36cc9d416881d2e24f9a963be5fb1cd90966419ac844274161d10488b3e825"
 dependencies = [
  "android-tzdata",
  "iana-time-zone",
@@ -1087,9 +1048,9 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "4.5.22"
+version = "4.5.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "69371e34337c4c984bbe322360c2547210bf632eb2814bbe78a6e87a2935bd2b"
+checksum = "3135e7ec2ef7b10c6ed8950f0f792ed96ee093fa088608f1c76e569722700c84"
 dependencies = [
  "clap_builder",
  "clap_derive",
@@ -1097,9 +1058,9 @@ dependencies = [
 
 [[package]]
 name = "clap_builder"
-version = "4.5.22"
+version = "4.5.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6e24c1b4099818523236a8ca881d2b45db98dadfb4625cf6608c12069fcbbde1"
+checksum = "30582fc632330df2bd26877bde0c1f4470d57c582bbc070376afcd04d8cb4838"
 dependencies = [
  "anstream",
  "anstyle",
@@ -1122,14 +1083,14 @@ dependencies = [
 
 [[package]]
 name = "clap_lex"
-version = "0.7.3"
+version = "0.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "afb84c814227b90d6895e01398aee0d8033c00e7466aca416fb6a8e0eb19d8a7"
+checksum = "f46ad14479a25103f283c0f10005961cf086d8dc42205bb44c46ac563475dca6"
 
 [[package]]
 name = "clap_utils"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "alloy-primitives",
  "clap",
@@ -1188,7 +1149,7 @@ checksum = "5b63caa9aa9397e2d9480a9b13673856c78d8ac123288526c37d7839f2a86990"
 [[package]]
 name = "compare_fields"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "itertools 0.10.5",
 ]
@@ -1196,7 +1157,7 @@ dependencies = [
 [[package]]
 name = "compare_fields_derive"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "quote",
  "syn 1.0.109",
@@ -1601,16 +1562,6 @@ checksum = "b72465f46d518f6015d9cf07f7f3013a95dd6b9c2747c3d65ae0cce43929d14f"
 
 [[package]]
 name = "delay_map"
-version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e4355c25cbf99edcb6b4a0e906f6bdc6956eda149e84455bea49696429b2f8e8"
-dependencies = [
- "futures",
- "tokio-util",
-]
-
-[[package]]
-name = "delay_map"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "df941644b671f05f59433e481ba0d31ac10e3667de725236a4c0d587c496fba1"
@@ -1618,21 +1569,6 @@ dependencies = [
  "futures",
  "tokio",
  "tokio-util",
-]
-
-[[package]]
-name = "deposit_contract"
-version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
-dependencies = [
- "ethabi 16.0.0",
- "ethereum_ssz",
- "hex",
- "reqwest",
- "serde_json",
- "sha2 0.9.9",
- "tree_hash",
- "types",
 ]
 
 [[package]]
@@ -1757,7 +1693,7 @@ dependencies = [
 [[package]]
 name = "directory"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "clap",
  "clap_utils",
@@ -1816,7 +1752,7 @@ dependencies = [
  "alloy-rlp",
  "arrayvec",
  "ctr 0.9.2",
- "delay_map 0.4.0",
+ "delay_map",
  "enr",
  "fnv",
  "futures",
@@ -1975,7 +1911,7 @@ dependencies = [
  "log",
  "rand",
  "serde",
- "sha3 0.10.8",
+ "sha3",
  "zeroize",
 ]
 
@@ -2017,22 +1953,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "error-chain"
-version = "0.12.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2d2f06b9cac1506ece98fe3231e3cc9c4410ec3d5b1f24ae1c8946f0742cdefc"
-dependencies = [
- "backtrace",
- "version_check",
-]
-
-[[package]]
 name = "eth2"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
- "account_utils",
- "bytes",
  "derivative",
  "eth2_keystore",
  "ethereum_serde_utils",
@@ -2040,7 +1964,6 @@ dependencies = [
  "ethereum_ssz_derive",
  "futures",
  "futures-util",
- "libsecp256k1",
  "lighthouse_network",
  "mediatype",
  "pretty_reqwest_error",
@@ -2048,7 +1971,7 @@ dependencies = [
  "proto_array",
  "psutil",
  "reqwest",
- "ring 0.16.20",
+ "reqwest-eventsource",
  "sensitive_url",
  "serde",
  "serde_json",
@@ -2056,12 +1979,13 @@ dependencies = [
  "ssz_types",
  "store",
  "types",
+ "zeroize",
 ]
 
 [[package]]
 name = "eth2_config"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "paste",
  "types",
@@ -2070,7 +1994,7 @@ dependencies = [
 [[package]]
 name = "eth2_interop_keypairs"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "bls",
  "ethereum_hashing",
@@ -2083,7 +2007,7 @@ dependencies = [
 [[package]]
 name = "eth2_key_derivation"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "bls",
  "num-bigint-dig",
@@ -2095,7 +2019,7 @@ dependencies = [
 [[package]]
 name = "eth2_keystore"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "aes 0.7.5",
  "bls",
@@ -2117,7 +2041,7 @@ dependencies = [
 [[package]]
 name = "eth2_network_config"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "bytes",
  "discv5",
@@ -2136,63 +2060,20 @@ dependencies = [
 ]
 
 [[package]]
-name = "eth2_wallet"
-version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
-dependencies = [
- "eth2_key_derivation",
- "eth2_keystore",
- "rand",
- "serde",
- "serde_json",
- "serde_repr",
- "tiny-bip39",
- "uuid",
-]
-
-[[package]]
-name = "ethabi"
-version = "16.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a4c98847055d934070b90e806e12d3936b787d0a115068981c1d8dfd5dfef5a5"
-dependencies = [
- "ethereum-types 0.12.1",
- "hex",
- "serde",
- "serde_json",
- "sha3 0.9.1",
- "thiserror 1.0.69",
- "uint 0.9.5",
-]
-
-[[package]]
 name = "ethabi"
 version = "18.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7413c5f74cc903ea37386a8965a936cbeb334bd270862fdece542c1b2dcbc898"
 dependencies = [
- "ethereum-types 0.14.1",
+ "ethereum-types",
  "hex",
  "once_cell",
  "regex",
  "serde",
  "serde_json",
- "sha3 0.10.8",
+ "sha3",
  "thiserror 1.0.69",
  "uint 0.9.5",
-]
-
-[[package]]
-name = "ethbloom"
-version = "0.11.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bfb684ac8fa8f6c5759f788862bb22ec6fe3cb392f6bfd08e3c64b603661e3f8"
-dependencies = [
- "crunchy",
- "fixed-hash 0.7.0",
- "impl-rlp",
- "impl-serde 0.3.2",
- "tiny-keccak",
 ]
 
 [[package]]
@@ -2202,10 +2083,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c22d4b5885b6aa2fe5e8b9329fb8d232bf739e434e6b87347c63bdd00c120f60"
 dependencies = [
  "crunchy",
- "fixed-hash 0.8.0",
- "impl-codec 0.6.0",
+ "fixed-hash",
+ "impl-codec",
  "impl-rlp",
- "impl-serde 0.4.0",
+ "impl-serde",
  "scale-info",
  "tiny-keccak",
 ]
@@ -2213,7 +2094,7 @@ dependencies = [
 [[package]]
 name = "ethereum-apis-common"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/ethereum_apis?rev=6141ac634c001de478f4e11df9095f670f97a36e#6141ac634c001de478f4e11df9095f670f97a36e"
+source = "git+https://github.com/pawanjay176/ethereum_apis?rev=44505a3310206210bab978f291363b942734e01b#44505a3310206210bab978f291363b942734e01b"
 dependencies = [
  "async-trait",
  "axum",
@@ -2231,30 +2112,16 @@ dependencies = [
 
 [[package]]
 name = "ethereum-types"
-version = "0.12.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "05136f7057fe789f06e6d41d07b34e6f70d8c86e5693b60f97aaa6553553bdaf"
-dependencies = [
- "ethbloom 0.11.1",
- "fixed-hash 0.7.0",
- "impl-rlp",
- "impl-serde 0.3.2",
- "primitive-types 0.10.1",
- "uint 0.9.5",
-]
-
-[[package]]
-name = "ethereum-types"
 version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "02d215cbf040552efcbe99a38372fe80ab9d00268e20012b79fcd0f073edd8ee"
 dependencies = [
- "ethbloom 0.13.0",
- "fixed-hash 0.8.0",
- "impl-codec 0.6.0",
+ "ethbloom",
+ "fixed-hash",
+ "impl-codec",
  "impl-rlp",
- "impl-serde 0.4.0",
- "primitive-types 0.12.2",
+ "impl-serde",
+ "primitive-types",
  "scale-info",
  "uint 0.9.5",
 ]
@@ -2316,7 +2183,7 @@ dependencies = [
  "bytes",
  "chrono",
  "elliptic-curve 0.12.3",
- "ethabi 18.0.0",
+ "ethabi",
  "generic-array",
  "hex",
  "k256 0.11.6",
@@ -2360,9 +2227,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "eventsource-stream"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "74fef4569247a5f429d9156b9d0a2599914385dd189c539334c625d8099d90ab"
+dependencies = [
+ "futures-core",
+ "nom",
+ "pin-project-lite",
+]
+
+[[package]]
 name = "execution_layer"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "alloy-consensus",
  "alloy-primitives",
@@ -2437,9 +2315,9 @@ checksum = "7360491ce676a36bf9bb3c56c1aa791658183a54d2744120f27285738d90465a"
 
 [[package]]
 name = "fastrand"
-version = "2.2.0"
+version = "2.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "486f806e73c5707928240ddc295403b1b93c96a02038563881c4a2fd84b81ac4"
+checksum = "37909eebbb50d72f9059c3b6d82c0463f2ff062c9e95845c43a6c9c0355411be"
 
 [[package]]
 name = "fastrlp"
@@ -2468,7 +2346,7 @@ version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ded41244b729663b1e574f1b4fb731469f69f79c17667b5d776b16cda0479449"
 dependencies = [
- "bitvec 1.0.1",
+ "bitvec",
  "rand_core",
  "subtle",
 ]
@@ -2498,22 +2376,10 @@ dependencies = [
 [[package]]
 name = "filesystem"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "winapi",
  "windows-acl",
-]
-
-[[package]]
-name = "fixed-hash"
-version = "0.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cfcf0ed7fe52a17a03854ec54a9f76d6d84508d1c0e66bc1793301c73fc8493c"
-dependencies = [
- "byteorder",
- "rand",
- "rustc-hex",
- "static_assertions",
 ]
 
 [[package]]
@@ -2531,7 +2397,7 @@ dependencies = [
 [[package]]
 name = "fixed_bytes"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "alloy-primitives",
  "safe_arith",
@@ -2577,7 +2443,7 @@ checksum = "00b0228411908ca8685dba7fc2cdd70ec9990a6e753e89b6ac91a84c40fbaf4b"
 [[package]]
 name = "fork_choice"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "ethereum_ssz",
  "ethereum_ssz_derive",
@@ -2596,22 +2462,6 @@ checksum = "e13624c2627564efccf4934284bdd98cbaa14e79b0b5a141218e507b3a823456"
 dependencies = [
  "percent-encoding",
 ]
-
-[[package]]
-name = "fs2"
-version = "0.4.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9564fc758e15025b46aa6643b1b77d047d1a56a1aea6e01002ac0c7026876213"
-dependencies = [
- "libc",
- "winapi",
-]
-
-[[package]]
-name = "funty"
-version = "1.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fed34cd105917e91daa4da6b3728c47b068749d6a62c59811f06ed2ac71d9da7"
 
 [[package]]
 name = "funty"
@@ -2706,7 +2556,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a8f2f12607f92c69b12ed746fabf9ca4f5c482cba46679c1a75b874ed7c26adb"
 dependencies = [
  "futures-io",
- "rustls 0.23.19",
+ "rustls 0.23.20",
  "rustls-pki-types",
 ]
 
@@ -2721,17 +2571,6 @@ name = "futures-task"
 version = "0.3.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f90f7dce0722e95104fcb095585910c0977252f286e354b5e3bd38902cd99988"
-
-[[package]]
-name = "futures-ticker"
-version = "0.0.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9763058047f713632a52e916cc7f6a4b3fc6e9fc1ff8c5b1dc49e5a89041682e"
-dependencies = [
- "futures",
- "futures-timer",
- "instant",
-]
 
 [[package]]
 name = "futures-timer"
@@ -2826,7 +2665,7 @@ checksum = "d2fabcfbdc87f4758337ca535fb41a6d701b65693ce38287d856d1674551ec9b"
 [[package]]
 name = "gossipsub"
 version = "0.5.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "async-channel",
  "asynchronous-codec",
@@ -2836,7 +2675,6 @@ dependencies = [
  "either",
  "fnv",
  "futures",
- "futures-ticker",
  "futures-timer",
  "getrandom",
  "hashlink 0.9.1",
@@ -3022,9 +2860,9 @@ checksum = "b07f60793ff0a4d9cef0f18e63b5357e06209987153a64648c972c1e5aff336f"
 
 [[package]]
 name = "hickory-proto"
-version = "0.24.1"
+version = "0.24.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "07698b8420e2f0d6447a436ba999ec85d8fbf2a398bbd737b82cac4a2e96e512"
+checksum = "447afdcdb8afb9d0a852af6dc65d9b285ce720ed7a59e42a8bf2e931c67bc1b5"
 dependencies = [
  "async-trait",
  "cfg-if",
@@ -3033,7 +2871,7 @@ dependencies = [
  "futures-channel",
  "futures-io",
  "futures-util",
- "idna 0.4.0",
+ "idna",
  "ipnet",
  "once_cell",
  "rand",
@@ -3047,9 +2885,9 @@ dependencies = [
 
 [[package]]
 name = "hickory-resolver"
-version = "0.24.1"
+version = "0.24.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "28757f23aa75c98f254cf0405e6d8c25b831b32921b050a66692427679b1f243"
+checksum = "0a2e2aba9c389ce5267d31cf1e4dace82390ae276b0b364ea55630b1fa1b44b4"
 dependencies = [
  "cfg-if",
  "futures-util",
@@ -3438,16 +3276,6 @@ checksum = "b9e0384b61958566e926dc50660321d12159025e767c18e043daf26b70104c39"
 
 [[package]]
 name = "idna"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7d20d6b07bfbc108882d88ed8e37d39636dcc260e15e30c45e6ba089610b917c"
-dependencies = [
- "unicode-bidi",
- "unicode-normalization",
-]
-
-[[package]]
-name = "idna"
 version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "686f825264d630750a544639377bae737628043f20d38bbc029e8f29ea968a7e"
@@ -3521,20 +3349,11 @@ dependencies = [
 
 [[package]]
 name = "impl-codec"
-version = "0.5.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "161ebdfec3c8e3b52bf61c4f3550a1eea4f9579d10dc1b936f3171ebdcd6c443"
-dependencies = [
- "parity-scale-codec 2.3.1",
-]
-
-[[package]]
-name = "impl-codec"
 version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ba6a270039626615617f3f36d15fc827041df3b78c439da2cadfa47455a77f2f"
 dependencies = [
- "parity-scale-codec 3.6.12",
+ "parity-scale-codec",
 ]
 
 [[package]]
@@ -3544,15 +3363,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f28220f89297a075ddc7245cd538076ee98b01f2a9c23a53a4f1105d5a322808"
 dependencies = [
  "rlp",
-]
-
-[[package]]
-name = "impl-serde"
-version = "0.3.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4551f042f3438e64dbd6226b20527fc84a6e1fe65688b58746a2f53623f25f5c"
-dependencies = [
- "serde",
 ]
 
 [[package]]
@@ -3603,18 +3413,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "instant"
-version = "0.1.13"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e0242819d153cba4b4b05a5a8f2a7e9bbf97b6055b2a002b395c96b5ff3c0222"
-dependencies = [
- "cfg-if",
-]
-
-[[package]]
 name = "int_to_bytes"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "bytes",
 ]
@@ -3718,9 +3519,9 @@ dependencies = [
 
 [[package]]
 name = "js-sys"
-version = "0.3.74"
+version = "0.3.76"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a865e038f7f6ed956f788f0d7d60c541fff74c7bd74272c5d4cf15c63743e705"
+checksum = "6717b6b5b077764fb5966237269cb3c64edddde4b14ce42647430a78ced9e7b7"
 dependencies = [
  "once_cell",
  "wasm-bindgen",
@@ -3751,7 +3552,7 @@ dependencies = [
  "ecdsa 0.14.8",
  "elliptic-curve 0.12.3",
  "sha2 0.10.8",
- "sha3 0.10.8",
+ "sha3",
 ]
 
 [[package]]
@@ -3793,14 +3594,14 @@ version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4b286e6b663fb926e1eeb68528e69cb70ed46c6d65871a21b2215ae8154c6d3c"
 dependencies = [
- "primitive-types 0.12.2",
+ "primitive-types",
  "tiny-keccak",
 ]
 
 [[package]]
 name = "kzg"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "arbitrary",
  "c-kzg",
@@ -3856,9 +3657,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.167"
+version = "0.2.168"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "09d6582e104315a817dff97f75133544b2e094ee22447d2acf4a74e189ba06fc"
+checksum = "5aaeb2981e0606ca11d79718f8bb01164f1d6ed75080182d3abf017e6d244b6d"
 
 [[package]]
 name = "libflate"
@@ -4160,7 +3961,7 @@ dependencies = [
  "quinn",
  "rand",
  "ring 0.17.8",
- "rustls 0.23.19",
+ "rustls 0.23.20",
  "socket2",
  "thiserror 1.0.69",
  "tokio",
@@ -4232,7 +4033,7 @@ dependencies = [
  "libp2p-identity",
  "rcgen",
  "ring 0.17.8",
- "rustls 0.23.19",
+ "rustls 0.23.20",
  "rustls-webpki 0.101.7",
  "thiserror 1.0.69",
  "x509-parser",
@@ -4342,17 +4143,16 @@ dependencies = [
 [[package]]
 name = "lighthouse_network"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "alloy-primitives",
  "alloy-rlp",
  "bytes",
- "delay_map 0.3.0",
+ "delay_map",
  "directory",
  "dirs",
  "discv5",
  "either",
- "error-chain",
  "ethereum_ssz",
  "ethereum_ssz_derive",
  "fnv",
@@ -4392,7 +4192,7 @@ dependencies = [
 [[package]]
 name = "lighthouse_version"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "git-version",
  "target_info",
@@ -4433,14 +4233,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "lockfile"
-version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
-dependencies = [
- "fs2",
-]
-
-[[package]]
 name = "log"
 version = "0.4.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4449,7 +4241,7 @@ checksum = "a7a70ba024b9dc04c27ea2f0c0548feb474ec5c54bba33a7f72f873a39d07b24"
 [[package]]
 name = "logging"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "chrono",
  "metrics",
@@ -4489,7 +4281,7 @@ dependencies = [
 [[package]]
 name = "lru_cache"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "fnv",
 ]
@@ -4554,7 +4346,7 @@ dependencies = [
 [[package]]
 name = "merkle_proof"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "alloy-primitives",
  "ethereum_hashing",
@@ -4588,7 +4380,7 @@ dependencies = [
 [[package]]
 name = "metrics"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "prometheus",
 ]
@@ -4705,9 +4497,9 @@ dependencies = [
 
 [[package]]
 name = "multihash"
-version = "0.19.2"
+version = "0.19.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc41f430805af9d1cf4adae4ed2149c759b877b01d909a1f40256188d09345d2"
+checksum = "6b430e7953c29dd6a09afc29ff0bb69c6e306329ee6794700aee27b76a1aea8d"
 dependencies = [
  "core2",
  "unsigned-varint 0.8.0",
@@ -4798,9 +4590,9 @@ dependencies = [
 
 [[package]]
 name = "netlink-sys"
-version = "0.8.6"
+version = "0.8.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "416060d346fbaf1f23f9512963e3e878f1a78e707cb699ba9215761754244307"
+checksum = "16c903aa70590cb93691bf97a767c8d1d6122d2cc9070433deb3bbf36ce8bd23"
 dependencies = [
  "bytes",
  "futures",
@@ -4970,7 +4762,7 @@ dependencies = [
  "arrayvec",
  "auto_impl",
  "bytes",
- "ethereum-types 0.14.1",
+ "ethereum-types",
  "open-fastrlp-derive",
 ]
 
@@ -5075,42 +4867,16 @@ dependencies = [
 
 [[package]]
 name = "parity-scale-codec"
-version = "2.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "373b1a4c1338d9cd3d1fa53b3a11bdab5ab6bd80a20f7f7becd76953ae2be909"
-dependencies = [
- "arrayvec",
- "bitvec 0.20.4",
- "byte-slice-cast",
- "impl-trait-for-tuples",
- "parity-scale-codec-derive 2.3.1",
- "serde",
-]
-
-[[package]]
-name = "parity-scale-codec"
 version = "3.6.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "306800abfa29c7f16596b5970a588435e3d5b3149683d00c12b699cc19f895ee"
 dependencies = [
  "arrayvec",
- "bitvec 1.0.1",
+ "bitvec",
  "byte-slice-cast",
  "impl-trait-for-tuples",
- "parity-scale-codec-derive 3.6.12",
+ "parity-scale-codec-derive",
  "serde",
-]
-
-[[package]]
-name = "parity-scale-codec-derive"
-version = "2.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1557010476e0595c9b568d16dcfb81b93cdeb157612726f5170d31aa707bed27"
-dependencies = [
- "proc-macro-crate 1.3.1",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
 ]
 
 [[package]]
@@ -5119,7 +4885,7 @@ version = "3.6.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d830939c76d294956402033aee57a6da7b438f2294eb94864c37b0569053a42c"
 dependencies = [
- "proc-macro-crate 3.2.0",
+ "proc-macro-crate",
  "proc-macro2",
  "quote",
  "syn 1.0.109",
@@ -5219,12 +4985,12 @@ checksum = "e3148f5046208a5d56bcfc03053e3ca6334e51da8dfb19b6cdc8b306fae3283e"
 
 [[package]]
 name = "pest"
-version = "2.7.14"
+version = "2.7.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "879952a81a83930934cbf1786752d6dedc3b1f29e8f8fb2ad1d0a36f377cf442"
+checksum = "8b7cafe60d6cf8e62e1b9b2ea516a089c008945bb5a275416789e7db0bc199dc"
 dependencies = [
  "memchr",
- "thiserror 1.0.69",
+ "thiserror 2.0.6",
  "ucd-trie",
 ]
 
@@ -5302,7 +5068,7 @@ dependencies = [
  "concurrent-queue",
  "hermit-abi 0.4.0",
  "pin-project-lite",
- "rustix 0.38.41",
+ "rustix 0.38.42",
  "tracing",
  "windows-sys 0.59.0",
 ]
@@ -5348,7 +5114,7 @@ dependencies = [
 [[package]]
 name = "pretty_reqwest_error"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "reqwest",
  "sensitive_url",
@@ -5375,39 +5141,16 @@ dependencies = [
 
 [[package]]
 name = "primitive-types"
-version = "0.10.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "05e4722c697a58a99d5d06a08c30821d7c082a4632198de1eaa5a6c22ef42373"
-dependencies = [
- "fixed-hash 0.7.0",
- "impl-codec 0.5.1",
- "impl-rlp",
- "impl-serde 0.3.2",
- "uint 0.9.5",
-]
-
-[[package]]
-name = "primitive-types"
 version = "0.12.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0b34d9fd68ae0b74a41b21c03c2f62847aa0ffea044eee893b4c140b37e244e2"
 dependencies = [
- "fixed-hash 0.8.0",
- "impl-codec 0.6.0",
+ "fixed-hash",
+ "impl-codec",
  "impl-rlp",
- "impl-serde 0.4.0",
+ "impl-serde",
  "scale-info",
  "uint 0.9.5",
-]
-
-[[package]]
-name = "proc-macro-crate"
-version = "1.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7f4c021e1093a56626774e81216a4ce732a735e5bad4868a03f3ed65ca0c3919"
-dependencies = [
- "once_cell",
- "toml_edit 0.19.15",
 ]
 
 [[package]]
@@ -5416,7 +5159,7 @@ version = "3.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ecf48c7ca261d60b74ab1a7b20da18bede46776b2e55535cb958eb595c5fa7b"
 dependencies = [
- "toml_edit 0.22.22",
+ "toml_edit",
 ]
 
 [[package]]
@@ -5515,7 +5258,7 @@ dependencies = [
 [[package]]
 name = "proto_array"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "ethereum_ssz",
  "ethereum_ssz_derive",
@@ -5591,9 +5334,9 @@ dependencies = [
  "quinn-proto",
  "quinn-udp",
  "rustc-hash 2.1.0",
- "rustls 0.23.19",
+ "rustls 0.23.20",
  "socket2",
- "thiserror 2.0.4",
+ "thiserror 2.0.6",
  "tokio",
  "tracing",
 ]
@@ -5609,10 +5352,10 @@ dependencies = [
  "rand",
  "ring 0.17.8",
  "rustc-hash 2.1.0",
- "rustls 0.23.19",
+ "rustls 0.23.20",
  "rustls-pki-types",
  "slab",
- "thiserror 2.0.4",
+ "thiserror 2.0.6",
  "tinyvec",
  "tracing",
  "web-time",
@@ -5620,9 +5363,9 @@ dependencies = [
 
 [[package]]
 name = "quinn-udp"
-version = "0.5.7"
+version = "0.5.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7d5a626c6807713b15cac82a6acaccd6043c9a5408c24baae07611fec3f243da"
+checksum = "52cd4b1eff68bf27940dd39811292c49e007f4d0b4c357358dc9b0197be6b527"
 dependencies = [
  "cfg_aliases",
  "libc",
@@ -5661,12 +5404,6 @@ dependencies = [
  "r2d2",
  "rusqlite",
 ]
-
-[[package]]
-name = "radium"
-version = "0.6.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "643f8f41a8ebc4c5dc4515c82bb8abd397b527fc20fd681b7c011c2aee5d44fb"
 
 [[package]]
 name = "radium"
@@ -5857,6 +5594,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "reqwest-eventsource"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f529a5ff327743addc322af460761dff5b50e0c826b9e6ac44c3195c50bb2026"
+dependencies = [
+ "eventsource-stream",
+ "futures-core",
+ "futures-timer",
+ "mime",
+ "nom",
+ "pin-project-lite",
+ "reqwest",
+ "thiserror 1.0.69",
+]
+
+[[package]]
 name = "resolv-conf"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5945,16 +5698,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rpassword"
-version = "5.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ffc936cf8a7ea60c58f030fd36a612a48f440610214dc54bc36431f9ea0c3efb"
-dependencies = [
- "libc",
- "winapi",
-]
-
-[[package]]
 name = "rpds"
 version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5995,8 +5738,8 @@ dependencies = [
  "fastrlp",
  "num-bigint",
  "num-traits",
- "parity-scale-codec 3.6.12",
- "primitive-types 0.12.2",
+ "parity-scale-codec",
+ "primitive-types",
  "proptest",
  "rand",
  "rlp",
@@ -6028,9 +5771,9 @@ dependencies = [
 
 [[package]]
 name = "rust_eth_kzg"
-version = "0.5.2"
+version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1407734b92b14e4b9a4d2925e2f9d2c7413f3bc16866cbb1261c9c5e5bf0f04f"
+checksum = "3291fd0d9c629a56537d74bbc1e7bcaf5be610f2f7b55af85c4fea843c6aeca3"
 dependencies = [
  "crate_crypto_internal_eth_kzg_bls12_381",
  "crate_crypto_internal_eth_kzg_erasure_codes",
@@ -6097,6 +5840,7 @@ dependencies = [
  "ethereum-apis-common",
  "ethereum_ssz",
  "execution_layer",
+ "futures",
  "futures-channel",
  "hex",
  "parking_lot",
@@ -6141,15 +5885,15 @@ dependencies = [
 
 [[package]]
 name = "rustix"
-version = "0.38.41"
+version = "0.38.42"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d7f649912bc1495e167a6edee79151c84b1bad49748cb4f1f1167f459f6224f6"
+checksum = "f93dc38ecbab2eb790ff964bb77fa94faf256fd3e73285fd7ba0903b76bedb85"
 dependencies = [
  "bitflags 2.6.0",
  "errno",
  "libc",
  "linux-raw-sys 0.4.14",
- "windows-sys 0.52.0",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -6180,9 +5924,9 @@ dependencies = [
 
 [[package]]
 name = "rustls"
-version = "0.23.19"
+version = "0.23.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "934b404430bb06b3fae2cba809eb45a1ab1aecd64491213d7c3301b88393f8d1"
+checksum = "5065c3f250cbd332cd894be57c40fa52387247659b14a2d6041d121547903b1b"
 dependencies = [
  "once_cell",
  "ring 0.17.8",
@@ -6278,7 +6022,7 @@ checksum = "f3cb5ba0dc43242ce17de99c180e96db90b235b8a9fdc9543c96d2209116bd9f"
 [[package]]
 name = "safe_arith"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 
 [[package]]
 name = "salsa20"
@@ -6297,7 +6041,7 @@ checksum = "346a3b32eba2640d17a9cb5927056b08f3de90f65b72fe09402c2ad07d684d0b"
 dependencies = [
  "cfg-if",
  "derive_more 1.0.0",
- "parity-scale-codec 3.6.12",
+ "parity-scale-codec",
  "scale-info-derive",
 ]
 
@@ -6307,7 +6051,7 @@ version = "2.11.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c6630024bf739e2179b91fb424b28898baf819414262c5d376677dbff1fe7ebf"
 dependencies = [
- "proc-macro-crate 3.2.0",
+ "proc-macro-crate",
  "proc-macro2",
  "quote",
  "syn 2.0.90",
@@ -6443,7 +6187,7 @@ dependencies = [
 [[package]]
 name = "sensitive_url"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "serde",
  "url",
@@ -6451,18 +6195,18 @@ dependencies = [
 
 [[package]]
 name = "serde"
-version = "1.0.215"
+version = "1.0.216"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6513c1ad0b11a9376da888e3e0baa0077f1aed55c17f50e7b2397136129fb88f"
+checksum = "0b9781016e935a97e8beecf0c933758c97a5520d32930e460142b4cd80c6338e"
 dependencies = [
  "serde_derive",
 ]
 
 [[package]]
 name = "serde_derive"
-version = "1.0.215"
+version = "1.0.216"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ad1e866f866923f252f05c889987993144fb74e722403468a4ebd70c3cd756c0"
+checksum = "46f859dbbf73865c6627ed570e78961cd3ac92407a2d117204c49232485da55e"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -6564,18 +6308,6 @@ dependencies = [
 
 [[package]]
 name = "sha3"
-version = "0.9.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f81199417d4e5de3f04b1e871023acea7389672c4135918f05aa9cbf2f2fa809"
-dependencies = [
- "block-buffer 0.9.0",
- "digest 0.9.0",
- "keccak",
- "opaque-debug",
-]
-
-[[package]]
-name = "sha3"
 version = "0.10.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "75872d278a8f37ef87fa0ddbda7802605cb18344497949862c0d4dcb291eba60"
@@ -6662,7 +6394,7 @@ dependencies = [
 [[package]]
 name = "slashing_protection"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "arbitrary",
  "ethereum_serde_utils",
@@ -6781,7 +6513,7 @@ dependencies = [
 [[package]]
 name = "slot_clock"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "metrics",
  "parking_lot",
@@ -6889,7 +6621,7 @@ checksum = "a8f112729512f8e442d81f95a8a7ddf2b7c6b8a1a6f509a95864142b30cab2d3"
 [[package]]
 name = "state_processing"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "arbitrary",
  "bls",
@@ -6921,7 +6653,7 @@ checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
 [[package]]
 name = "store"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "bls",
  "db-key",
@@ -7004,7 +6736,7 @@ dependencies = [
 [[package]]
 name = "swap_or_not_shuffle"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "alloy-primitives",
  "ethereum_hashing",
@@ -7119,7 +6851,7 @@ checksum = "c63f48baada5c52e65a29eef93ab4f8982681b67f9e8d29c7b05abcfec2b9ffe"
 [[package]]
 name = "task_executor"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "async-channel",
  "futures",
@@ -7139,7 +6871,7 @@ dependencies = [
  "cfg-if",
  "fastrand",
  "once_cell",
- "rustix 0.38.41",
+ "rustix 0.38.42",
  "windows-sys 0.59.0",
 ]
 
@@ -7160,14 +6892,14 @@ version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5352447f921fda68cf61b4101566c0bdb5104eff6804d0678e5227580ab6a4e9"
 dependencies = [
- "rustix 0.38.41",
+ "rustix 0.38.42",
  "windows-sys 0.59.0",
 ]
 
 [[package]]
 name = "test_random_derive"
 version = "0.2.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "quote",
  "syn 1.0.109",
@@ -7184,11 +6916,11 @@ dependencies = [
 
 [[package]]
 name = "thiserror"
-version = "2.0.4"
+version = "2.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2f49a1853cf82743e3b7950f77e0f4d622ca36cf4317cba00c767838bac8d490"
+checksum = "8fec2a1820ebd077e2b90c4df007bebf344cd394098a13c563957d0afc83ea47"
 dependencies = [
- "thiserror-impl 2.0.4",
+ "thiserror-impl 2.0.6",
 ]
 
 [[package]]
@@ -7204,9 +6936,9 @@ dependencies = [
 
 [[package]]
 name = "thiserror-impl"
-version = "2.0.4"
+version = "2.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8381894bb3efe0c4acac3ded651301ceee58a15d47c2e34885ed1908ad667061"
+checksum = "d65750cab40f4ff1929fb1ba509e9914eb756131cef4210da8d5d700d26f6312"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -7261,25 +6993,6 @@ checksum = "2834e6017e3e5e4b9834939793b282bc03b37a3336245fa820e35e233e2a85de"
 dependencies = [
  "num-conv",
  "time-core",
-]
-
-[[package]]
-name = "tiny-bip39"
-version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "62cc94d358b5a1e84a5cb9109f559aa3c4d634d2b1b4de3d0fa4adc7c78e2861"
-dependencies = [
- "anyhow",
- "hmac 0.12.1",
- "once_cell",
- "pbkdf2 0.11.0",
- "rand",
- "rustc-hash 1.1.0",
- "sha2 0.10.8",
- "thiserror 1.0.69",
- "unicode-normalization",
- "wasm-bindgen",
- "zeroize",
 ]
 
 [[package]]
@@ -7387,9 +7100,9 @@ dependencies = [
 
 [[package]]
 name = "tokio-stream"
-version = "0.1.16"
+version = "0.1.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4f4e6ce100d0eb49a2734f8c0812bcd324cf357d21810932c5df6b96ef2b86f1"
+checksum = "eca58d7bba4a75707817a2c44174253f9236b2d5fbd055602e9d5c07c139a047"
 dependencies = [
  "futures-core",
  "pin-project-lite",
@@ -7432,24 +7145,13 @@ checksum = "0dd7358ecb8fc2f8d014bf86f6f638ce72ba252a2c3a2572f2a795f1d23efb41"
 
 [[package]]
 name = "toml_edit"
-version = "0.19.15"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1b5bb770da30e5cbfde35a2d7b9b8a2c4b8ef89548a7a6aeab5c9a576e3e7421"
-dependencies = [
- "indexmap",
- "toml_datetime",
- "winnow 0.5.40",
-]
-
-[[package]]
-name = "toml_edit"
 version = "0.22.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4ae48d6208a266e853d946088ed816055e556cc6028c5e8e2b84d9fa5dd7c7f5"
 dependencies = [
  "indexmap",
  "toml_datetime",
- "winnow 0.6.20",
+ "winnow",
 ]
 
 [[package]]
@@ -7670,7 +7372,7 @@ checksum = "42ff0bf0c66b8238c6f3b578df37d0b7848e55df8577b3f74f92a69acceeb825"
 [[package]]
 name = "types"
 version = "0.2.1"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "alloy-primitives",
  "alloy-rlp",
@@ -7765,12 +7467,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7e51b68083f157f853b6379db119d1c1be0e6e4dec98101079dec41f6f5cf6df"
 
 [[package]]
-name = "unicode-bidi"
-version = "0.3.17"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5ab17db44d7388991a428b2ee655ce0c212e862eff1768a455c58f9aad6e7893"
-
-[[package]]
 name = "unicode-ident"
 version = "1.0.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -7839,7 +7535,7 @@ checksum = "8ecb6da28b8a351d773b68d5825ac39017e680750f980f3a1a85cd8dd28a47c1"
 [[package]]
 name = "unused_port"
 version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
+source = "git+https://github.com/pawanjay176/lighthouse?branch=refactor-mock-builder#c678427780de056815f39e44dad838a7f7913377"
 dependencies = [
  "lru_cache",
  "parking_lot",
@@ -7852,7 +7548,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "32f8b686cadd1473f4bd0117a5d28d36b1ade384ea9b5069a1c40aefed7fda60"
 dependencies = [
  "form_urlencoded",
- "idna 1.0.3",
+ "idna",
  "percent-encoding",
 ]
 
@@ -7888,24 +7584,6 @@ checksum = "bc5cf98d8186244414c848017f0e2676b3fcb46807f6668a97dfe67359a3c4b7"
 dependencies = [
  "getrandom",
  "serde",
-]
-
-[[package]]
-name = "validator_dir"
-version = "0.1.0"
-source = "git+https://github.com/pawanjay176/lighthouse.git?rev=6d10456912b3c39b8a8c9089db76e8ead20608a0#6d10456912b3c39b8a8c9089db76e8ead20608a0"
-dependencies = [
- "bls",
- "deposit_contract",
- "derivative",
- "directory",
- "eth2_keystore",
- "filesystem",
- "hex",
- "lockfile",
- "rand",
- "tree_hash",
- "types",
 ]
 
 [[package]]
@@ -7993,9 +7671,9 @@ checksum = "9c8d87e72b64a3b4db28d11ce29237c246188f4f51057d65a7eab63b7987e423"
 
 [[package]]
 name = "wasm-bindgen"
-version = "0.2.97"
+version = "0.2.99"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d15e63b4482863c109d70a7b8706c1e364eb6ea449b201a76c5b89cedcec2d5c"
+checksum = "a474f6281d1d70c17ae7aa6a613c87fce69a127e2624002df63dcb39d6cf6396"
 dependencies = [
  "cfg-if",
  "once_cell",
@@ -8004,13 +7682,12 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-backend"
-version = "0.2.97"
+version = "0.2.99"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8d36ef12e3aaca16ddd3f67922bc63e48e953f126de60bd33ccc0101ef9998cd"
+checksum = "5f89bb38646b4f81674e8f5c3fb81b562be1fd936d84320f3264486418519c79"
 dependencies = [
  "bumpalo",
  "log",
- "once_cell",
  "proc-macro2",
  "quote",
  "syn 2.0.90",
@@ -8019,9 +7696,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-futures"
-version = "0.4.47"
+version = "0.4.49"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9dfaf8f50e5f293737ee323940c7d8b08a66a95a419223d9f41610ca08b0833d"
+checksum = "38176d9b44ea84e9184eff0bc34cc167ed044f816accfe5922e54d84cf48eca2"
 dependencies = [
  "cfg-if",
  "js-sys",
@@ -8032,9 +7709,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-macro"
-version = "0.2.97"
+version = "0.2.99"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "705440e08b42d3e4b36de7d66c944be628d579796b8090bfa3471478a2260051"
+checksum = "2cc6181fd9a7492eef6fef1f33961e3695e4579b9872a6f7c83aee556666d4fe"
 dependencies = [
  "quote",
  "wasm-bindgen-macro-support",
@@ -8042,9 +7719,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-macro-support"
-version = "0.2.97"
+version = "0.2.99"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "98c9ae5a76e46f4deecd0f0255cc223cfa18dc9b261213b8aa0c7b36f61b3f1d"
+checksum = "30d7a95b763d3c45903ed6c81f156801839e5ee968bb07e534c44df0fcd330c2"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -8055,9 +7732,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-shared"
-version = "0.2.97"
+version = "0.2.99"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6ee99da9c5ba11bd675621338ef6fa52296b76b83305e9b6e5c77d4c286d6d49"
+checksum = "943aab3fdaaa029a6e0271b35ea10b72b943135afe9bffca82384098ad0e06a6"
 
 [[package]]
 name = "wasm-streams"
@@ -8074,9 +7751,9 @@ dependencies = [
 
 [[package]]
 name = "web-sys"
-version = "0.3.74"
+version = "0.3.76"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a98bc3c33f0fe7e59ad7cd041b89034fa82a7c2d4365ca538dda6cdaf513863c"
+checksum = "04dd7223427d52553d3702c004d3b2fe07c148165faa56313cb00211e31c12bc"
 dependencies = [
  "js-sys",
  "wasm-bindgen",
@@ -8107,7 +7784,7 @@ dependencies = [
  "either",
  "home",
  "once_cell",
- "rustix 0.38.41",
+ "rustix 0.38.42",
 ]
 
 [[package]]
@@ -8410,15 +8087,6 @@ checksum = "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec"
 
 [[package]]
 name = "winnow"
-version = "0.5.40"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f593a95398737aeed53e489c785df13f3618e41dbcd6718c6addbf1395aa6876"
-dependencies = [
- "memchr",
-]
-
-[[package]]
-name = "winnow"
 version = "0.6.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "36c1fec1a2bb5866f07c25f68c26e565c4c200aebb96d7e55710c19d3e8ac49b"
@@ -8447,12 +8115,6 @@ name = "writeable"
 version = "0.5.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1e9df38ee2d2c3c5948ea468a8406ff0db0b29ae1ffde1bcf20ef305bcc95c51"
-
-[[package]]
-name = "wyz"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "85e60b0d1b5f99db2556934e21937020776a5d31520bf169e851ac44e6420214"
 
 [[package]]
 name = "wyz"
@@ -8633,6 +8295,7 @@ version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ced3678a2879b30306d323f4542626697a464a97c0a07c9aebf7ebca65cd4dde"
 dependencies = [
+ "serde",
  "zeroize_derive",
 ]
 

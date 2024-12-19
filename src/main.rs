@@ -3,6 +3,7 @@ use color_eyre::eyre::eyre;
 use eth2::Timeouts;
 use execution_layer::Config;
 use rustic_builder::builder_impl::RusticBuilder;
+use rustic_builder::payload_creator::get_header;
 use sensitive_url::SensitiveUrl;
 use std::ops::Deref;
 use std::path::PathBuf;
@@ -13,6 +14,7 @@ use tracing::{instrument, Level};
 use tracing_core::LevelFilter;
 use tracing_error::ErrorLayer;
 use tracing_subscriber::prelude::*;
+use tracing_subscriber::EnvFilter;
 use types::{Address, ChainSpec, MainnetEthSpec};
 
 #[derive(Parser)]
@@ -48,6 +50,8 @@ struct BuilderConfig {
         requires("empty-payloads")
     )]
     default_fee_recipient: Option<Address>,
+    #[clap(long, help = "Client mode")]
+    client_mode: bool,
 }
 
 #[instrument]
@@ -57,9 +61,24 @@ async fn main() -> color_eyre::eyre::Result<()> {
     let log_level: LevelFilter = builder_config.log_level.into();
 
     // Initialize logging.
-    color_eyre::install()?;
+    // color_eyre::install()?;
+    // Create a filter that allows logs from the binary and the execution_layer
+    // Create filter with your existing log level
+    let filter = EnvFilter::builder()
+        .with_default_directive(LevelFilter::OFF.into())
+        .parse(&format!(
+            "rustic_builder={},execution_layer={}",
+            log_level, log_level
+        ))
+        .unwrap();
+
+    // Set up the tracing subscriber with the filter
     tracing_subscriber::Registry::default()
-        .with(tracing_subscriber::fmt::layer().with_filter(log_level))
+        .with(
+            tracing_subscriber::fmt::layer()
+                .with_ansi(false)
+                .with_filter(filter),
+        )
         .with(ErrorLayer::default())
         .init();
 
@@ -101,15 +120,21 @@ async fn main() -> color_eyre::eyre::Result<()> {
 
     let el = execution_layer::ExecutionLayer::<MainnetEthSpec>::from_config(
         config,
-        task_executor,
-        log_root,
+        task_executor.clone(),
+        log_root.clone(),
     )
     .map_err(|e| eyre!(format!("{e:?}")))?;
 
     let spec = Arc::new(spec);
-    let mock_builder =
-        execution_layer::test_utils::MockBuilder::new(el, beacon_client, spec.clone());
-    let rustic_builder = RusticBuilder::new(mock_builder, spec);
+    let mock_builder = execution_layer::test_utils::MockBuilder::new(
+        el,
+        beacon_client.clone(),
+        false,
+        false,
+        spec.clone(),
+        log_root,
+    );
+    let rustic_builder = Arc::new(RusticBuilder::new(mock_builder, spec));
     tracing::info!("Initialized mock builder");
 
     let pubkey = rustic_builder.deref().public_key();
@@ -121,10 +146,40 @@ async fn main() -> color_eyre::eyre::Result<()> {
     ))
     .await
     .unwrap();
+
+    let builder_preparer = rustic_builder.clone();
+    task_executor.spawn(
+        {
+            async move {
+                tracing::info!("Starting preparation service");
+                let result = builder_preparer.prepare_execution_layer().await;
+                dbg!(&result);
+            }
+        },
+        "preparation service",
+    );
     tracing::info!("Listening on {listener:?}");
     let app = builder_server::server::new(rustic_builder);
-    axum::serve(listener, app).await?;
+    task_executor.spawn(
+        async {
+            tracing::info!("Starting builder server");
+            axum::serve(listener, app).await.expect("server failed"); // or handle the error however you prefer
+        },
+        "rustic_server",
+    );
 
+    if builder_config.client_mode {
+        task_executor.spawn(
+            async move {
+                get_header::<MainnetEthSpec>(beacon_client.clone())
+                    .await
+                    .unwrap();
+            },
+            "get_header_task",
+        );
+    }
+
+    task_executor.exit().await;
     tracing::info!("Shutdown complete.");
 
     Ok(())
