@@ -48,6 +48,18 @@ struct BuilderConfig {
         requires("empty-payloads")
     )]
     default_fee_recipient: Option<Address>,
+    #[clap(
+        long,
+        help = "Builder always returns a bid with value set to max",
+        default_value_t = false
+    )]
+    set_max_bid_value: bool,
+    #[clap(
+        long,
+        help = "If set to true, builder will return a bid even for non registered validators",
+        default_value_t = false
+    )]
+    allow_unregistered_validators: bool,
 }
 
 #[instrument]
@@ -124,8 +136,9 @@ async fn main() -> Result<(), String> {
     let mock_builder = execution_layer::test_utils::MockBuilder::new(
         el,
         beacon_client.clone(),
+        builder_config.allow_unregistered_validators,
         false,
-        false,
+        builder_config.set_max_bid_value,
         spec.clone(),
         log_root,
     );
