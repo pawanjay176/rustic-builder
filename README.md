@@ -9,15 +9,35 @@ The name references both its implementation language (Rust) and its rustic natur
 
 ## Installation
 
+### From Source
 ```
 cargo build --release
+```
+
+### Using Docker
+```bash
+docker build -t rustic-builder .
 ```
 
 ## Usage
 
 Needs a fully synced ethereum node (Beacon node + Execution client)
 
-Example usage
+### Running from Binary
 ```
 ./target/release/rustic-builder --execution-endpoint http://localhost:8551 --beacon-node http://localhost:5052 --jwt-secret jwt.hex --port 8560
 ```
+
+### Running with Docker
+```bash
+docker run -p 8560:8560 \
+  -v /path/to/jwt.hex:/jwt.hex \
+  rustic-builder \
+  --execution-endpoint http://execution-client:8551 \
+  --beacon-node http://beacon-node:5052
+```
+
+Note: When running with Docker, make sure to:
+- Mount your JWT secret file
+- Use appropriate network settings (--network host if running nodes locally)
+- Adjust the execution/beacon endpoints to match your setup
