@@ -24,6 +24,7 @@ execution_layer = { git = "https://github.com/pawanjay176/lighthouse", branch = 
 task_executor = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
 sensitive_url = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
 eth2_network_config = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }
+hex = "0.4.3"
 
 [patch."https://github.com/sigp/lighthouse"]
 types = { git = "https://github.com/pawanjay176/lighthouse", branch = "refactor-mock-builder" }

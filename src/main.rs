@@ -60,6 +60,11 @@ struct BuilderConfig {
         default_value_t = false
     )]
     allow_unregistered_validators: bool,
+    #[clap(
+        long,
+        help = "Hex-encoded secret key for the builder. If provided, it will be used as the secret key for the builder."
+    )]
+    builder_secret_key: Option<String>,
 }
 
 #[instrument]
@@ -99,7 +104,13 @@ async fn main() -> Result<(), String> {
         .map_err(|e| format!("Failed to get config spec: {:?}", e))?;
     let spec = ChainSpec::from_config::<MainnetEthSpec>(config.data.config())
         .ok_or_else(|| String::from("Unable to parse chain spec from config"))?;
-
+    let builder_secret_key = builder_config
+        .builder_secret_key
+        .as_ref()
+        .map(|key| {
+            hex::decode(key).map_err(|e| format!("Failed to decode builder secret key: {:?}", e))
+        })
+        .transpose()?;
     let url = SensitiveUrl::parse(builder_config.execution_endpoint.as_str())
         .map_err(|e| format!("Failed to parse execution endpoint URL: {:?}", e))?;
 
@@ -140,6 +151,7 @@ async fn main() -> Result<(), String> {
         false,
         builder_config.set_max_bid_value,
         spec.clone(),
+        builder_secret_key.as_deref(),
         log_root,
     );
     let rustic_builder = Arc::new(RusticBuilder::new(mock_builder, spec));

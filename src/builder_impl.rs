@@ -44,6 +44,7 @@ impl<E: EthSpec> Builder<E> for RusticBuilder<E> {
         &self,
         registrations: Vec<SignedValidatorRegistrationData>,
     ) -> Result<(), ErrorResponse> {
+        tracing::info!("Registering validators, count: {}", registrations.len());
         self.builder
             .register_validators(registrations)
             .await
@@ -56,6 +57,12 @@ impl<E: EthSpec> Builder<E> for RusticBuilder<E> {
         parent_hash: ExecutionBlockHash,
         pubkey: PublicKeyBytes,
     ) -> Result<SignedBuilderBid<E>, ErrorResponse> {
+        tracing::info!(
+            "Getting header for slot {}, parent_hash: {}, pubkey: {:?}",
+            slot,
+            parent_hash,
+            pubkey
+        );
         self.builder
             .get_header(slot, parent_hash, pubkey)
             .await
@@ -66,6 +73,11 @@ impl<E: EthSpec> Builder<E> for RusticBuilder<E> {
         &self,
         signed_block: SignedBlindedBeaconBlock<E>,
     ) -> Result<ExecutionPayload<E>, ErrorResponse> {
+        tracing::info!(
+            "Submitting signed blinded block to builder, slot: {}, root: {}",
+            signed_block.message().slot(),
+            signed_block.canonical_root(),
+        );
         self.builder
             .submit_blinded_block(signed_block)
             .await
