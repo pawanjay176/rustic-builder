@@ -5,8 +5,8 @@ edition = "2021"
 
 [dependencies]
 clap = "4.5"
-builder-server = {git = "https://github.com/pawanjay176/ethereum_apis", rev = "44505a3310206210bab978f291363b942734e01b"}
-ethereum-apis-common= {git = "https://github.com/pawanjay176/ethereum_apis", rev = "44505a3310206210bab978f291363b942734e01b"}
+builder-server = {git = "https://github.com/pawanjay176/ethereum_apis", rev = "c87ffa25606d41ff1352c46fa3fb62151b5e03c5"}
+ethereum-apis-common= {git = "https://github.com/pawanjay176/ethereum_apis", rev = "c87ffa25606d41ff1352c46fa3fb62151b5e03c5"}
 async-trait = "0.1.51"
 tokio = { version = "1", default-features = false, features = ["signal", "rt-multi-thread"] }
 tracing = { version = "0.1", features = ["attributes"] }

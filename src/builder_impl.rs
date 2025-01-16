@@ -1,12 +1,12 @@
 use std::{ops::Deref, sync::Arc};
 
 use async_trait::async_trait;
-use builder_server::builder::Builder;
+use builder_server::{builder::Builder, FullPayloadContents};
 use ethereum_apis_common::{custom_internal_err, ErrorResponse};
 use execution_layer::test_utils::MockBuilder;
 use types::{
-    builder_bid::SignedBuilderBid, ChainSpec, EthSpec, ExecutionBlockHash, ExecutionPayload,
-    ForkName, PublicKeyBytes, SignedBlindedBeaconBlock, SignedValidatorRegistrationData, Slot,
+    builder_bid::SignedBuilderBid, ChainSpec, EthSpec, ExecutionBlockHash, ForkName,
+    PublicKeyBytes, SignedBlindedBeaconBlock, SignedValidatorRegistrationData, Slot,
 };
 
 #[derive(Clone)]
@@ -72,7 +72,7 @@ impl<E: EthSpec> Builder<E> for RusticBuilder<E> {
     async fn submit_blinded_block(
         &self,
         signed_block: SignedBlindedBeaconBlock<E>,
-    ) -> Result<ExecutionPayload<E>, ErrorResponse> {
+    ) -> Result<FullPayloadContents<E>, ErrorResponse> {
         tracing::info!(
             "Submitting signed blinded block to builder, slot: {}, root: {}",
             signed_block.message().slot(),
