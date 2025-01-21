@@ -7,6 +7,8 @@ It works as a wrapper over Lighthouse's [mock-builder](https://github.com/sigp/l
 
 The name references both its implementation language (Rust) and its rustic nature - serving farm-to-table payloads from your local execution client.
 
+Note: This currently does not support updating the gas limit at runtime based on the validator registrations. It is meant to use in a controlled [kurtosis](https://github.com/ethpandaops/ethereum-package) like setup where the gas limit does not change over the duration of the testnet.
+
 ## Installation
 
 ### From Source
