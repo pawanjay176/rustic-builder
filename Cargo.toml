@@ -4,9 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-clap = "4.5"
-builder-server = {git = "https://github.com/sigp/ethereum_apis", rev = "7e8c5a96b25d9b14d85af60ac0e7531342c6d098"}
-ethereum-apis-common= {git = "https://github.com/sigp/ethereum_apis", rev = "7e8c5a96b25d9b14d85af60ac0e7531342c6d098"}
+clap = {version = "4.5", features = ["derive"]}
+builder-server = {git = "https://github.com/sigp/ethereum_apis", rev = "84353ae9c4ae171340a08ebccef4a7ad50a3ee6a"}
+ethereum-apis-common= {git = "https://github.com/sigp/ethereum_apis", rev = "84353ae9c4ae171340a08ebccef4a7ad50a3ee6a"}
 async-trait = "0.1.51"
 tokio = { version = "1", default-features = false, features = ["signal", "rt-multi-thread"] }
 tracing = { version = "0.1", features = ["attributes"] }
@@ -16,12 +16,10 @@ tracing-core = "0.1.21"
 async-channel = "1.9.0"
 futures-channel = "0.3.21"
 axum = { version = "0.8.1" }
-slog = "2.7.0"
-tracing-slog = "0.3.0"
 hex = "0.4.3"
-types = { git = "https://github.com/sigp/lighthouse", rev = "3bc5f1f2a58b1df9454884672c8100fd5f79ba8b" }
-eth2 = { git = "https://github.com/sigp/lighthouse", rev = "3bc5f1f2a58b1df9454884672c8100fd5f79ba8b" }
-execution_layer = { git = "https://github.com/sigp/lighthouse", rev = "3bc5f1f2a58b1df9454884672c8100fd5f79ba8b" }
-task_executor = { git = "https://github.com/sigp/lighthouse", rev = "3bc5f1f2a58b1df9454884672c8100fd5f79ba8b" }
-sensitive_url = { git = "https://github.com/sigp/lighthouse", rev = "3bc5f1f2a58b1df9454884672c8100fd5f79ba8b" }
-eth2_network_config = { git = "https://github.com/sigp/lighthouse", rev = "3bc5f1f2a58b1df9454884672c8100fd5f79ba8b" }
+types = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
+eth2 = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
+execution_layer = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
+task_executor = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
+sensitive_url = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
+eth2_network_config = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }

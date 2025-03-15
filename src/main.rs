@@ -114,19 +114,13 @@ async fn main() -> Result<(), String> {
     let url = SensitiveUrl::parse(builder_config.execution_endpoint.as_str())
         .map_err(|e| format!("Failed to parse execution endpoint URL: {:?}", e))?;
 
-    // Convert slog logs from the EL to tracing logs.
-    // TODO(pawan): get rid of this abomination once we switch
-    // to tracing in lighthouse
-    let drain = tracing_slog::TracingSlogDrain;
-    let log_root = slog::Logger::root(drain, slog::o!());
-
     let (shutdown_tx, _shutdown_rx) = futures_channel::mpsc::channel::<ShutdownReason>(1);
     let (_signal, exit) = async_channel::bounded(1);
     let task_executor = task_executor::TaskExecutor::new(
         tokio::runtime::Handle::current(),
         exit,
-        log_root.clone(),
         shutdown_tx,
+        "rustic-builder".to_string(),
     );
 
     let config = Config {
@@ -139,7 +133,6 @@ async fn main() -> Result<(), String> {
     let el = execution_layer::ExecutionLayer::<MainnetEthSpec>::from_config(
         config,
         task_executor.clone(),
-        log_root.clone(),
     )
     .map_err(|e| format!("Failed to create execution layer: {:?}", e))?;
 
@@ -152,7 +145,6 @@ async fn main() -> Result<(), String> {
         builder_config.set_max_bid_value,
         spec.clone(),
         builder_secret_key.as_deref(),
-        log_root,
     );
     let rustic_builder = Arc::new(RusticBuilder::new(mock_builder, spec));
     tracing::info!("Initialized mock builder");
