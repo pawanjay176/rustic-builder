@@ -5,8 +5,8 @@ edition = "2021"
 
 [dependencies]
 clap = {version = "4.5", features = ["derive"]}
-builder-server = {git = "https://github.com/sigp/ethereum_apis", rev = "84353ae9c4ae171340a08ebccef4a7ad50a3ee6a"}
-ethereum-apis-common= {git = "https://github.com/sigp/ethereum_apis", rev = "84353ae9c4ae171340a08ebccef4a7ad50a3ee6a"}
+builder-server = {git = "https://github.com/sigp/ethereum_apis", branch = "lh-tracing"}
+ethereum-apis-common= {git = "https://github.com/sigp/ethereum_apis", branch = "lh-tracing"}
 async-trait = "0.1.51"
 tokio = { version = "1", default-features = false, features = ["signal", "rt-multi-thread"] }
 tracing = { version = "0.1", features = ["attributes"] }
@@ -17,9 +17,9 @@ async-channel = "1.9.0"
 futures-channel = "0.3.21"
 axum = { version = "0.8.1" }
 hex = "0.4.3"
-types = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
-eth2 = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
-execution_layer = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
-task_executor = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
-sensitive_url = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
-eth2_network_config = { git = "https://github.com/sigp/lighthouse", rev = "574b204bdb39fbfd7939c901a595647794b89274" }
+types = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
+eth2 = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
+execution_layer = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
+task_executor = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
+sensitive_url = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
+eth2_network_config = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
