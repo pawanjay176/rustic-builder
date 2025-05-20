@@ -74,9 +74,10 @@ impl<E: EthSpec> Builder<E> for RusticBuilder<E> {
         signed_block: SignedBlindedBeaconBlock<E>,
     ) -> Result<FullPayloadContents<E>, ErrorResponse> {
         tracing::info!(
-            "Submitting signed blinded block to builder, slot: {}, root: {}",
+            "Submitting signed blinded block to builder, slot: {}, root: {}, fork: {}",
             signed_block.message().slot(),
             signed_block.canonical_root(),
+            signed_block.fork_name_unchecked(),
         );
         self.builder
             .submit_blinded_block(signed_block)

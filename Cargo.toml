@@ -17,9 +17,9 @@ async-channel = "1.9.0"
 futures-channel = "0.3.21"
 axum = { version = "0.8.1" }
 hex = "0.4.3"
-types = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
-eth2 = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
-execution_layer = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
-task_executor = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
-sensitive_url = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
-eth2_network_config = { git = "https://github.com/sigp/lighthouse", rev = "d96b73152e0e4bcedb8e747016ba8070029db50d" }
+types = { git = "https://github.com/sigp/lighthouse", rev = "f06d1d034615e71534204c091ee639f27e2e9b5c" }
+eth2 = { git = "https://github.com/sigp/lighthouse", rev = "f06d1d034615e71534204c091ee639f27e2e9b5c" }
+execution_layer = { git = "https://github.com/sigp/lighthouse", rev = "f06d1d034615e71534204c091ee639f27e2e9b5c" }
+task_executor = { git = "https://github.com/sigp/lighthouse", rev = "f06d1d034615e71534204c091ee639f27e2e9b5c" }
+sensitive_url = { git = "https://github.com/sigp/lighthouse", rev = "f06d1d034615e71534204c091ee639f27e2e9b5c" }
+eth2_network_config = { git = "https://github.com/sigp/lighthouse", rev = "f06d1d034615e71534204c091ee639f27e2e9b5c" }
